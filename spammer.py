@@ -17,6 +17,7 @@ init(autoreset=False)
 print(f"{Fore.GREEN}Discord Webhook Spammer {Fore.WHITE}| {Fore.LIGHTRED_EX}Braily Guzman")
 sleep(2)
 
+#Input 
 os.system('cls')
 print(f"{Fore.LIGHTRED_EX}Webhook URL {Fore.WHITE}")
 webhook = input("[ENTER]: ")
@@ -24,6 +25,7 @@ os.system('cls')
 print(f"{Fore.LIGHTRED_EX}Message{Fore.WHITE}")
 text = input("[ENTER]: ")
 
+#Proxies
 proxy = set()
 with open("proxies.txt", "r") as f:
     file_lines1 = f.readlines()
@@ -36,6 +38,8 @@ proxies = {
 
 sent = 0
 os.system('cls')
+
+#Spam
 while True:
     Message = {
         "content": text
