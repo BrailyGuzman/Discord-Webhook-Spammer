@@ -26,26 +26,22 @@ print(f"{Fore.LIGHTRED_EX}Message{Fore.WHITE}")
 text = input("[ENTER]: ")
 
 #Proxies
-proxy = set()
-with open("proxies.txt", "r") as f:
-    file_lines1 = f.readlines()
-    for line1 in file_lines1:
-        proxy.add(line1.strip())
+proxies = open("proxies.txt", "r").readlines()
 
-proxies = {
-    'http': 'http://'+line1
-    }
 
 sent = 0
 os.system('cls')
 
 #Spam
 while True:
-    Message = {
-        "content": text
-    }
-    requests.post(webhook, data=Message, proxies=proxies)
-    sent += 1
+    for proxy in proxies:
+        proxy_dict = {"http": f"http://{proxy.rstrip()}"}
+        payload = {
+            "content": text
+        }
+        requests.post(webhook, data=payload, proxies=proxy_dict)
+        sent += 1
 
-    print(f"{Fore.LIGHTRED_EX}[SENT] {Fore.GREEN}{sent}", end='\r')
-    sleep(1)
+        print(f"{Fore.LIGHTRED_EX}[SENT] {Fore.GREEN}{sent}", end='\r')
+        # You can get rate limited very quickly, if you set sleep as 2 or 3 you should be good.
+        sleep(2)
